@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Амарантач :: /b/ - Бред</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to emulate the Makaba Center aesthetic */
+        body {
+            background-color: #e2e2e2;
+            color: #333;
+            font-family: 'Verdana', 'Arial', sans-serif;
+            font-size: 14px;
+        }
+        .site-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .site-header {
+            background-color: #d6d6c2;
+            border: 1px solid #b7b7a7;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .site-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .site-header h1 {
+            font-size: 28px;
+            color: #af0a0f;
+            font-weight: bold;
+        }
+        .site-header-nav a {
+            color: #af0a0f;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .site-header-nav a:hover {
+            text-decoration: underline;
+        }
+        .search-bar {
+            margin-top: 5px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .search-bar input[type="text"] {
+            border: 1px solid #b7b7a7;
+            background-color: #f0f0e0;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .search-bar input[type="submit"] {
+            border: 1px solid #b7b7a7;
+            background-color: #e0e0d0;
+            padding: 2px 8px;
+            margin-left: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .sidebar {
+            background-color: #f0f0e0;
+            border: 1px solid #b7b7a7;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .sidebar h2 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #af0a0f;
+            border-bottom: 1px solid #b7b7a7;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        .sidebar ul li a {
+            color: #af0a0f;
+            text-decoration: none;
+            display: block;
+            padding: 2px 0;
+        }
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            background-color: #f0f0e0;
+            border: 1px solid #b7b7a7;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .ad-banner {
+            text-align: center;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .board-title {
+            background-color: #e0e0d0;
+            color: #af0a0f;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 24px;
+            font-weight: bold;
+            border: 1px solid #b7b7a7;
+            border-radius: 4px;
+        }
+        .nav-links {
+            text-align: center;
+            padding: 5px;
+            margin-top: 10px;
+        }
+        .nav-button {
+            display: inline-block;
+            background-color: #e0e0d0;
+            border: 1px solid #b7b7a7;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #af0a0f;
+            text-decoration: none;
+            margin: 0 5px;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .nav-button:hover {
+            background-color: #d6d6c2;
+            border-color: #999;
+        }
+        .thread { width: 100%; }
+        .post {
+            background-color: #d6d6c2;
+            border: 1px solid #b7b7a7;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .op-post { display: flex; flex-wrap: wrap; }
+        .reply {
+            display: block; /* Corrected from table to block */
+            background-color: #d6d6c2;
+            border: 1px solid #b7b7a7;
+            margin-left: 20px;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 4px;
+            width: fit-content; /* Makes the box wrap its content */
+            max-width: calc(100% - 20px); /* Prevents overflow */
+        }
+        .post-header {
+            width: 100%;
+            margin-bottom: 5px;
+            color: #117743;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .post-header .name { color: #117743; }
+        .post-header .subject { color: #cc1105; font-weight: bold; }
+        .post-header .post-number a { color: #800000; text-decoration: none; }
+        .post-header .post-number a:hover { color: #af0a0f; text-decoration: underline; }
+        .post-file { float: left; margin-right: 20px; font-size: 12px; margin-bottom: 10px; }
+        .post-file-info { margin-bottom: 5px; }
+        .post-file img { max-width: 200px; max-height: 200px; border-radius: 4px; border: 1px solid #b7b7a7; }
+        .post-content { width: 100%; line-height: 1.5; overflow-wrap: break-word; color: #333; }
+        .op-post .post-content { width: calc(100% - 220px); }
+        .quote-link { color: #af0a0f; text-decoration: underline; }
+        .greentext { color: #789922; }
+        hr { border: none; border-top: 1px solid #b7b7a7; margin: 15px 0; }
+
+        /* Animated Banner Styles */
+        .animated-banner { background-color: #2a2a2a; border: 2px solid #666; color: #ff9900; font-family: 'Courier New', Courier, monospace; font-weight: bold; width: 100%; height: 100%; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; }
+        .banner-text-container { position: relative; width: 100%; height: 100%; text-align: center; }
+        .banner-text-container p { position: absolute; width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; animation: text-fade 9s infinite; font-size: 22px; text-shadow: 0 0 5px #ff4500; }
+        .banner-text-container p.text1 { animation-delay: 0s; }
+        .banner-text-container p.text2 { animation-delay: 3s; }
+        .banner-text-container p.text3 { animation-delay: 6s; }
+        @keyframes text-fade { 0% { opacity: 0; } 15% { opacity: 1; } 33% { opacity: 1; } 48% { opacity: 0; } 100% { opacity: 0; } }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .site-header-top { flex-direction: column; gap: 5px; }
+            .ad-banner { width: 100%; height: auto; }
+            .animated-banner { height: 90px; }
+            .banner-text-container p { font-size: 16px; }
+            .op-post { flex-direction: column; }
+            .op-post .post-file { width: 100%; text-align: center; margin-right: 0; margin-bottom: 10px; }
+            .op-post .post-file img { max-width: 100%; height: auto; }
+            .op-post .post-content { width: 100%; }
+            .reply { margin-left: 10px; width: auto; max-width: calc(100% - 10px); }
+        }
+    </style>
+</head>
+<body class="p-2 md:p-4">
+
+<div class="site-wrapper">
+    <!-- Site Header -->
+    <header class="site-header">
+        <div class="site-header-top">
+            <h1>Амарантач</h1>
+            <nav class="site-header-nav">
+                [<a href="#">Главная</a>] [<a href="#">Настройки</a>] [<a href="#">Помощь</a>] [<a href="#">Поиск</a>]
+            </nav>
+        </div>
+        <div class="search-bar">
+            <form action="#">
+                <input type="text" name="q" placeholder="Поиск...">
+                <input type="submit" value="Искать">
+            </form>
+        </div>
+    </header>
+
+    <div class="md:flex md:gap-4">
+        <!-- Sidebar with Board List -->
+        <aside class="sidebar w-full md:w-1/5 mb-4 md:mb-0">
+            <h2>Список досок</h2>
+            <ul>
+                <li><a href="#">/b/ - Бред</a></li>
+                <li><a href="#">/po/ - Политика</a></li>
+                <li><a href="#">/vg/ - Видеоигры</a></li>
+                <li><a href="#">/a/ - Аниме</a></li>
+                <li><a href="#">/sci/ - Наука</a></li>
+                <li><a href="#">/tech/ - Техника</a></li>
+                <li><a href="#">/h/ - Хентай</a></li>
+                <li><a href="#">/wh/ - Военное дело</a></li>
+                <li><a href="#">/spc/ - Космос</a></li>
+                <li><a href="#">/diy/ - Сделай сам</a></li>
+            </ul>
+            <hr>
+            <h2>Информация</h2>
+            <ul>
+                <li><a href="#">Правила</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">О сайте</a></li>
+                <li><a href="#">Поддержать проект</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content w-full md:w-4/5">
+            <!-- Ad Banner -->
+            <div class="ad-banner">
+                <a href="#" title="Работа на заводах Новой Земли! Присоединяйся к ГКК!">
+                    <div class="animated-banner">
+                        <div class="banner-text-container">
+                            <p class="text1">РАБОТА НА ЗАВОДАХ НОВОЙ ЗЕМЛИ!</p>
+                            <p class="text2">ВЫСОКАЯ ЗАРПЛАТА! СТАБИЛЬНОСТЬ!</p>
+                            <p class="text3">ЖМИ ПОКА ТВОЁ МЕСТО НЕ ЗАНЯЛИ!</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="board-title">/b/ - Бред</div>
+            <div class="nav-links">
+                <a href="#" class="nav-button">Вернуться</a>
+                <a href="#" class="nav-button">Создать тред</a>
+                <a href="#" class="nav-button">Каталог</a>
+            </div>
+            
+            <hr>
+
+            <div class="thread" id="thread-9112718">
+                <div class="text-lg font-bold mb-2">Тред №9112718</div>
+
+                <!-- Original Post -->
+                <div class="post op-post" id="post-9112718">
+                    <div class="post-header">
+                        <span class="subject">СПЕЦОПЕРАЦИЯ КСБ 'СВИНАЯ ЖОПА' В ВАЛИ. ЭТО НЕ ШУТКА.</span>
+                        <span class="name">Аноним</span>
+                        <span>23/02/2313 (Пт) 23:45:01</span>
+                        <span class="post-number"><a href="#post-9112718">No.9112718</a></span>
+                    </div>
+                    <div class="post-body flex flex-wrap w-full">
+                        <div class="post-file">
+                            <div class="post-file-info">Файл: vali_pig_incident.jpg (0.7 Мб, 1280x720)</div>
+                            <a href="https://i.imgur.com/example_trash3.jpg" target="_blank">
+                                <img src="https://i.imgur.com/example_trash3.jpg" alt="всё в дыму и каких-то ошмётках" onerror="this.onerror=null;this.src='https://placehold.co/200x200/e0e0d0/800000?text=Image+Failed+To+Load';">
+                            </a>
+                        </div>
+                        <div class="post-content">
+                             <p>АНОНЫ. Я НЕ ЗНАЮ КАК ЭТО ОПИСАТЬ СЛОВАМИ. Я СЕЙЧАС ВИДЕЛ ТАКОЙ ПИЗДЕЦ, ЧТО ГАЙСКИЙ КОНФЛИКТ ПОКАЖЕТСЯ ВАМ ДЕТСКИМ УТРЕННИКОМ.</p>
+                            <p>Я живу в Вали, в ебенях, фермерством занимаюсь. Знаете, как у нас тут "любят" наших "освободителей" из ГКК. Так вот, сегодня эта любовь достигла апогея. Приезжает к моему соседу, старому Миколашу, целый отряд этих ряженых петухов из КСБ. Не местные менты, а прям элита с Терры, судя по акценту.</p>
+                            <p>Перевернули у Миколаша весь дом вверх дном, искали подпольный передатчик ЦПСС. Естественно, нихуя не нашли, потому что у Миколаша из техники только электропастух и старый терминал для заказа семян. И тут внимание этих долбоёбов привлекает Бориска. Бориска - это призовая длинная свинья Миколаша. Огромная, сука, махина, килограмм на 400, с клыками как у саблезуба. Миколаш её на выставки возил.</p>
+                            <p>Главный КСБшник, какой-то сопляк-лейтенант, смотрит на эту свинью и заявляет своим бойцам (я слышал, они орали на весь хутор): "ПРОВЕРИТЬ РЕКТАЛЬНО НА ПРЕДМЕТ СКРЫТЫХ КОНТЕЙНЕРОВ!"</p>
+                            <p>АНОНЫ. ОНИ РЕШИЛИ ЗАСУНУТЬ РУКУ В ЖОПУ БОРИСКЕ.</p>
+                            <p>Миколаш чуть в обморок не упал, орет "Вы что творите, ироды, это же Бориска, чемпион!". Но этим похуй. Двое держат свинью, а третий, самый молодой, снимает перчатку и медленно так, с лицом мученика, начинает подкрадываться к свиному очку.</p>
+                            <p>Бориска, видимо, такого унижения в своей чемпионской жизни еще не испытывал. Он издал такой визг, что у меня стекла в окнах задрожали. А потом он, сука, ВЗОРВАЛСЯ. Не буквально. Он просто дёрнулся с такой силой, что разбросал этих двух кретинов, как кегли. А потом он начал СРАТЬ. Это был не просто понос. Это был, блядь, артиллерийский залп из полупереваренного комбикорма, силоса и свиного говна. Струя ударила прямо в лицо тому бедолаге, что с голой рукой к нему лез. Его просто смыло нахуй.</p>
+                            <p>Потом обезумевший Бориска, весь в собственном дерьме, с диким рёвом начал носиться по двору. Он протаранил одного КСБшника, насадив его на клык. Тот так и повис, дёргая ногами. Остальные в панике открыли огонь. ИЗ АВТОМАТОВ, БЛЯДЬ. В ДЕРЕВЯННОМ СВИНАРНИКЕ.</p>
+                            <p>Пули рикошетят, сено загорается, Бориска продолжает свой кроваво-говняный берсерк-режим, пока его не разнесло на куски прямым попаданием из подствольника. Свинарник горит. Двор весь в крови, говне и кишках. Один КСБшник висит на заборе с клыком в животе. Второго откачивают, он захлебнулся свиным дерьмом. Третий просто сидит на земле и плачет.</p>
+                            <p>Миколаша всё равно арестовали. За "сопротивление властям" и "использование сельскохозяйственного животного в террористических целях".</p>
+                            <p>Я ЭТО ВСЁ СНЯЛ НА КПК. СЕЙЧАС ЗАЛИВАЮ В EXTRANET. ЭТО ДОЛЖНЫ ВИДЕТЬ ВСЕ. ВОТ ТАК ВЫГЛЯДИТ "КОНФЕДЕРАТИВНЫЙ ПОРЯДОК".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Replies -->
+                <div class="reply" id="post-9112721">
+                    <div class="post-header">
+                        <span class="name">Аноним</span>
+                        <span>23/02/2313 (Пт) 23:47:22</span>
+                        <span class="post-number"><a href="#post-9112721">No.9112721</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p><a href="#post-9112718" class="quote-link">&gt;&gt;9112718 (OP)</a></p>
+                        <p>ЧТО. БЛЯТЬ. Я. ТОЛЬКО. ЧТО. ПРОЧИТАЛ.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112725">
+                    <div class="post-header">
+                        <span class="name">Аноним</span>
+                        <span>23/02/2313 (Пт) 23:49:01</span>
+                        <span class="post-number"><a href="#post-9112725">No.9112725</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p><a href="#post-9112718" class="quote-link">&gt;&gt;9112718 (OP)</a></p>
+                        <p>СВИНЬЯ-ПАРТИЗАН! БОРИСКА - ГЕРОЙ ВАЛИ! F.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112730">
+                    <div class="post-header">
+                        <span class="name">Аноним</span>
+                        <span>23/02/2313 (Пт) 23:51:13</span>
+                        <span class="post-number"><a href="#post-9112730">No.9112730</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p><a href="#post-9112718" class="quote-link">&gt;&gt;9112718 (OP)</a></p>
+                        <p>Видео давай, пиздабол! Без видео это просто твои больные фантазии! Хотя звучит правдоподобно для наших дегенератов из спецслужб.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112738">
+                    <div class="post-header">
+                        <span class="name">Аноним_ЦПСС</span>
+                        <span>23/02/2313 (Пт) 23:53:44</span>
+                        <span class="post-number"><a href="#post-9112738">No.9112738</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p>Ахаха, вот это уровень! Ваши "элитные" спецслужбы проиграли войну свинье! В ЦПСС для таких операций используют неинвазивные сканеры. Но откуда вам, дикарям, знать о технологиях? Вы до сих пор пальцем в жопе ковыряетесь. Буквально.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112742">
+                    <div class="post-header">
+                        <span class="name">Аноним</span>
+                        <span>23/02/2313 (Пт) 23:55:08</span>
+                        <span class="post-number"><a href="#post-9112742">No.9112742</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p><a href="#post-9112738" class="quote-link">&gt;&gt;9112738</a></p>
+                        <p>ЗАТКНИСЬ, СОСАЛИТ! ЭТА СВИНЬЯ БОЛЬШЕ МУЖИК, ЧЕМ ВЕСЬ ВАШ ПЯТЫЙ ФЛОТ! ОНА УМЕРЛА ЗА СВОБОДУ И ЧЕСТЬ, А НЕ ЗА КОРПОРАТИВНЫЕ КОНТРАКТЫ!</p>
+                        <p><a href="#post-9112718" class="quote-link">&gt;&gt;9112718 (OP)</a></p>
+                        <p>Говорят, в свинье был спрятан микропередатчик в виде анальной пробки из нуль-стекла, чтобы псионики не спалили. КСБшники знали, на что шли. Это была не просто свинья. Это был агент сопротивления.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112749">
+                    <div class="post-header">
+                        <span class="name">Аноним (OP)</span>
+                        <span>23/02/2313 (Пт) 23:58:19</span>
+                        <span class="post-number"><a href="#post-9112749">No.9112749</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p><a href="#post-9112730" class="quote-link">&gt;&gt;9112730</a></p>
+                        <p>ВИДЕО ЗАГРУЖАЕТСЯ, ИНТЕРНЕТ ТУТ ХУЕВЫЙ!</p>
+                        <p><a href="#post-9112742" class="quote-link">&gt;&gt;9112742</a></p>
+                        <p>Насчет пробки не знаю, но Миколаш что-то шептал Бориске на ухо перед тем, как его оттащили. Может, кодовое слово какое-то. Самое смешное, они потом останки Бориски погрузили в фургон. Наверное, на экспертизу. Или на шашлыки, хуй этих ублюдков знает. От того, которого проткнули, кстати, до сих пор воняет говном. Его даже медики в свой шаттл не пустили, так и сидит на улице, кровью и дерьмом истекает.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112755">
+                    <div class="post-header">
+                        <span class="name">Аноним</span>
+                        <span>24/02/2313 (Сб) 00:01:33</span>
+                        <span class="post-number"><a href="#post-9112755">No.9112755</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p>Это не просто тред. Это, блядь, современный эпос. Поэма о борьбе простого свина против системы. Надо будет гимн написать в честь Бориски.</p>
+                    </div>
+                </div>
+                <div class="reply" id="post-9112760">
+                    <div class="post-header">
+                        <span class="name">Аноним</span>
+                        <span>24/02/2313 (Сб) 00:05:01</span>
+                        <span class="post-number"><a href="#post-9112760">No.9112760</a></span>
+                    </div>
+                    <div class="post-content">
+                        <p class="greentext">&gt;использование сельскохозяйственного животного в террористических целях</p>
+                        <p>ЗВУЧИТ КАК ОФИЦИАЛЬНАЯ СТАТЬЯ В НАШЕМ УК. Я НЕ УДИВЛЕН. СКОРО ЗА НЕПРАВИЛЬНО ПОСАЖЕННУЮ КАРТОШКУ БУДУТ РАССТРЕЛИВАТЬ.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-button">Вернуться</a>
+                <a href="#" class="nav-button">Создать тред</a>
+                <a href="#" class="nav-button">Каталог</a>
+            </div>
+        </main>
+    </div>
+</div>
+
+</body>
+</html>
